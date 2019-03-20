@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: BSD-3-Clause
 
+import settings from 'electron-settings';
+
 import {
   FetherContextTrayMenu,
   FetherContextWindowMenu,
@@ -15,6 +17,10 @@ const pino = Pino();
 function setupMenu (fetherApp) {
   fetherApp.menubarMenu = new FetherMenubarMenu(fetherApp);
   fetherApp.menubarMenu.setMenu();
+
+  // Frontend change language when Fether window loads
+  const savedLanguage = settings.get('fether-language');
+  fetherApp.win.webContents.emit('set-language', savedLanguage);
 
   if (fetherApp.options.withTaskbar) {
     fetherApp.contextTrayMenu = new FetherContextTrayMenu(fetherApp);

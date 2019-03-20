@@ -12,7 +12,6 @@ import {
   Switch
 } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
-import store from 'store';
 import isElectron from 'is-electron';
 import { Modal } from 'fether-ui';
 import semver from 'semver';
@@ -27,7 +26,6 @@ import Send from '../Send';
 import Tokens from '../Tokens';
 import Whitelist from '../Whitelist';
 
-const LANG_LS_KEY = 'fether-language';
 const currentVersion = version;
 
 // Use MemoryRouter for production viewing in file:// protocol
@@ -49,16 +47,11 @@ class App extends Component {
       return;
     }
 
-    if (store.get(LANG_LS_KEY) && i18n.language !== store.get(LANG_LS_KEY)) {
-      i18n.changeLanguage(store.get(LANG_LS_KEY));
-    }
-
     electron.remote
       .getCurrentWindow()
       .webContents.addListener('set-language', newLanguage => {
         i18n.changeLanguage(newLanguage);
-        store.set(LANG_LS_KEY, newLanguage);
-        electron.remote.getCurrentWindow().webContents.reload();
+        // electron.remote.getCurrentWindow().webContents.reload();
       });
 
     window.addEventListener('contextmenu', this.handleRightClick);

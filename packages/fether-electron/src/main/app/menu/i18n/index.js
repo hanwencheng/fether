@@ -10,12 +10,14 @@ import settings from 'electron-settings';
 
 import { name } from '../../../../../package.json';
 import Pino from '../../utils/pino';
-import { en } from './locales';
+import { en, de } from './locales';
 
 let { app } = electron;
 const pino = Pino();
 let resourceEnglishNS = {};
+let resourceGermanNS = {};
 resourceEnglishNS[name] = en;
+resourceGermanNS[name] = de;
 const packageNS = Object.keys(resourceEnglishNS)[0].toString();
 const moduleNS = 'i18n';
 const menuNS = `${packageNS}-${moduleNS}`;
@@ -26,14 +28,15 @@ i18n
   .init({
     debug: true,
     defaultNS: packageNS,
-    fallbackLng: ['en-US', 'en'],
+    fallbackLng: ['en-US', 'en', 'de-DE', 'de'],
     interpolation: {
       escapeValue: false
     },
     lng: settings.get('fether-language') || 'en',
     ns: [packageNS],
     resources: {
-      en: resourceEnglishNS
+      en: resourceEnglishNS,
+      de: resourceGermanNS
     },
     saveMissing: true
   })

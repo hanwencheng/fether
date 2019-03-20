@@ -10,11 +10,13 @@ import store from 'store';
 
 import { name } from '../../package.json';
 import Debug from '../utils/debug';
-import { en } from './locales';
+import { en, de } from './locales';
 
 const LANG_LS_KEY = 'fether-language';
 let resourceEnglishNS = {};
+let resourceGermanNS = {};
 resourceEnglishNS[name] = en;
+resourceGermanNS[name] = de;
 const packageNS = Object.keys(resourceEnglishNS)[0].toString();
 const moduleNS = 'i18n';
 const menuNS = `${packageNS}-${moduleNS}`;
@@ -26,7 +28,7 @@ i18n
   .init({
     debug: true,
     defaultNS: packageNS,
-    fallbackLng: ['en-US', 'en'],
+    fallbackLng: ['en-US', 'en', 'de-DE', 'de'],
     interpolation: {
       escapeValue: false
     },
@@ -40,7 +42,8 @@ i18n
       nsMode: 'default'
     },
     resources: {
-      en: resourceEnglishNS
+      en: resourceEnglishNS,
+      de: resourceGermanNS
     },
     saveMissing: true
   })

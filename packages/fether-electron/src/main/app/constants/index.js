@@ -13,7 +13,9 @@ const TRUSTED_URLS = [
   'wss://127.0.0.1:8546',
   'https://parity.io',
   'https://github.com/paritytech/fether/issues/new',
-  'https://api.github.com/repos/paritytech/fether/releases/latest'
+  'https://api.github.com/repos/paritytech/fether/releases/latest',
+  // FIXME - how to add Dev Tools as trusted url?
+  'chrome-devtools://devtools/bundled/toolbox.html?remoteBase=https://chrome-devtools-frontend.appspot.com/serve_file/@b216d5f29ba53b9046287cc7de14f9f0759ad091/&can_dock=true&toolbarColor=rgba(223,223,223,1)&textColor=rgba(0,0,0,1)&experiments=true'
 ];
 
 export { TRUSTED_URLS };

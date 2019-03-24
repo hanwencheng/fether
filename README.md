@@ -94,7 +94,7 @@ $ /path/to/fether
 
 #### Mac
 
-Install Xcode Command Line Tools, NVM, Node.js latest LTS, Yarn, and Git
+Install Xcode Command Line Tools, NVM, Node.js latest LTS, Yarn, Git, and OpenSSL
 
 ```bash
 xcode-select --install;
@@ -109,6 +109,7 @@ nvm use --lts;
 brew install yarn --without-node;
 brew install git --verbose;
 brew upgrade git --verbose;
+brew install openssl
 ```
 
 #### Linux and Windows (Git Bash)
@@ -127,6 +128,9 @@ sudo apt-get update && sudo apt-get install yarn;
 sudo ln -s /usr/bin/yarn /usr/local/bin/yarn;
 yarn global add windows-build-tools;
 ```
+
+Install OpenSSL
+**FIXME** - Add steps to install OpenSSL on Linux and Windows
 
 ### Clone this repo
 

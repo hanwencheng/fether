@@ -101,6 +101,31 @@ app.on('quit', () => {
 });
 
 /**
+ * Security. Emit when client certificate requested where `url` is the navigation
+ * entry requesting it. `callback` is called with the certificate filtered from
+ * the certificateList.
+ * Client certificates should be installed in the platform Chrome certificate storage first
+ * on machinees that you control. If it is a machine that you do not control, then
+ * you cannot alter this behaviour unless you purchase a certificate from a trusted issuing
+ * Certificate Authority.
+ *
+ * Linux - import with `importCertificate` https://github.com/electron/electron/blob/master/docs/api/app.md#appimportcertificateoptions-callback-linux
+ * Windows - https://stackoverflow.com/questions/6580937/how-to-create-a-trusted-self-signed-ssl-certificate
+ *
+ * Reference: https://electronjs.org/docs/api/app#event-select-client-certificate
+ */
+app.on(
+  'select-client-certificate',
+  (event, webContents, url, certificateList, callback) => {
+    pino.debug('Certificate List: ', certificateList);
+    // Prevent the application from using the first certificate from the store
+    event.preventDefault();
+
+    callback(certificateList[0]);
+  }
+);
+
+/**
  * Security. Insecure TLS Validation - verify the application does not explicitly opt-out
  * of TLS validation.
  *
@@ -109,6 +134,7 @@ app.on('quit', () => {
 app.on(
   'certificate-error',
   (event, webContents, url, error, certificate, callback) => {
+    pino.debug('Certificate Error: ', error);
     // Prevent default behaviour of continuing to load the page
     event.preventDefault();
 

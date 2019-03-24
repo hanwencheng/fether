@@ -105,7 +105,7 @@ app.on('quit', () => {
  * entry requesting it. `callback` is called with the certificate filtered from
  * the certificateList.
  * Client certificates should be installed in the platform Chrome certificate storage first
- * on machinees that you control. If it is a machine that you do not control, then
+ * on machines that you control. If it is a machine that you do not control, then
  * you cannot alter this behaviour unless you purchase a certificate from a trusted issuing
  * Certificate Authority.
  *

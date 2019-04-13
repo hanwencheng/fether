@@ -29,6 +29,12 @@ export class CreateAccountStore {
   isImport = false; // Are we creating a new account, or importing via phrase?
 
   @observable
+  isEditAccountName = false; // Are we editing an existing account name?
+
+  @observable
+  isEditAccountPassword = false; // Are we editing an existing account password?
+
+  @observable
   jsonString = null;
 
   @observable
@@ -48,6 +54,16 @@ export class CreateAccountStore {
   @action
   setIsImport = isImport => {
     this.isImport = isImport;
+  };
+
+  @action
+  setIsEditAccountName = isEditAccountName => {
+    this.isEditAccountName = isEditAccountName;
+  };
+
+  @action
+  setIsEditAccountPassword = isEditAccountPassword => {
+    this.isEditAccountPassword = isEditAccountPassword;
   };
 
   /**
@@ -75,6 +91,12 @@ export class CreateAccountStore {
 
     this.bip39Phrase = mnemonic;
     this.address = address;
+  };
+
+  editAccountFromParity = async password => {
+    debug('Editing account from Parity');
+
+    // TODO
   };
 
   saveAccountToParity = async password => {

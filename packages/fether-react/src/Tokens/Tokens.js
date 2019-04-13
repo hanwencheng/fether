@@ -46,6 +46,22 @@ class Tokens extends PureComponent {
       onClick: () => history.push(`/backup/${address}`)
     };
 
+    const editAccountNameItem = {
+      name: i18n.t(`${packageNS}:tokens.tokens.menu_items.edit_account_name`),
+      onClick: () => {
+        // TODO
+        history.push('/accounts/edit/1');
+
+        // // Parity Signer Account
+        // if (this.isParitySignerAccount()) {
+        //   // Modify Local Storage
+        //   return;
+        // }
+
+        // // Non-Parity Signer Account
+      }
+    };
+
     const menuItems = [
       {
         name: i18n.t(`${packageNS}:tokens.tokens.menu_items.add_tokens`),
@@ -56,6 +72,8 @@ class Tokens extends PureComponent {
     if (this.isParitySignerAccount() === false) {
       menuItems.unshift(backupAccountItem);
     }
+
+    menuItems.unshift(editAccountNameItem);
 
     return menuItems;
   };

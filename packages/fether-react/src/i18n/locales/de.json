@@ -194,7 +194,8 @@
     "tokens": {
       "menu_items": {
         "backup_account": "Sicherungskonto",
-        "add_tokens": "Token hinzufügen"
+        "add_tokens": "Token hinzufügen",
+        "edit_account_name": "Bearbeiten Sie den Kontonamen"
       }
     }
   },
